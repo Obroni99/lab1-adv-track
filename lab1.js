@@ -58,7 +58,8 @@ assert(1 === 2, 'this is an example of a failing assertion. 1 does not equal 2.'
 */
 
 //your code goes here
-
+assert('lion' === 'tiger', 'these 2 animal strings are similar, but not strictly equal');
+assert('hippo' === 'hippo', 'a hippo string is strictly equal to another hippo string');
 /* ========================================================================
 ----------------- Meerkats (20 points total)-------------------------------
 ===========================================================================
@@ -78,12 +79,30 @@ var sentence2 = 'Come over here so you can scratch my belly.';
 // 'chirp' (10 points)
 
 // your code goes here
-
+var convertChirp = function(meerSpeak) {
+	var array1 = meerSpeak.split(' ');
+	for (var i = 0; i < array1.length; i++) {
+		array1[i] = 'chirp';
+		}
+	var chirpString = array1.join(' ') + '.';
+	return chirpString;
+	};
+sentence1 = convertChirp(sentence1);
 // TODO: part #2: use a while or do-while loop to replace the words in sentence 2
 // with 'chirp' (10 points)
 
 // your code goes here
-
+var convertChirp2 = function(meerSpeak) {
+	var array2 = meerSpeak.split(' ');
+	var counter = 0;
+	while (counter < array2.length) {
+  		array2[counter] = 'chirp';
+  		counter++;
+		}
+	var chirpString2 = array2.join(' ') + '.';
+	return chirpString2;
+	};
+sentence2 = convertChirp2(sentence2);
 // Leave these assertions as-is! If they pass, your code works.
 assert(sentence1 === 'chirp chirp chirp.', 'sentence 1 should have 3 chirps');
 assert(sentence2 === 'chirp chirp chirp chirp chirp chirp chirp chirp chirp.',
@@ -105,9 +124,12 @@ var nextAnimal;
 // Assign one of your favorite animals to nextAnimal using Math.random() to pick
 
 // your code goes here
-
+var nextAnimal = function() {
+	var picker = Math.floor(Math.random() * favoriteAnimals.length);
+	return favoriteAnimals[picker];
+	};
+nextAnimal();
 assert(nextAnimal, 'assign something to nextAnimal');
-
 /* ===================================================================
 ----------------- Hungry Lion (20 points) ----------------------------
 ======================================================================
@@ -134,10 +156,24 @@ var tooHungryDay;
 */
 
 // your code goes here
-
+var appetite = function() {
+	var foodToday = 0;
+	var aveArray = [];
+	for (var i = 0; i < mealsPerDay.length; i++) {
+		foodToday += mealsPerDay[i];
+	  	aveArray.push(foodToday/(i+1));
+		}
+	for (var j = 0; j < aveArray.length; j++) {
+		if (aveArray[j] < 4) {
+	    	tooHungryDay = j + 1;
+	    	break;
+	  		}
+		}
+	return tooHungryDay;
+	};
+tooHungryDay = appetite();
 assert(tooHungryDay, 'remember to assign the answer to tooHungryDay');
 assert(tooHungryDay < 10, 'the lion is too hungry before the end of the array');
-
 /* ==================================================================
 ----------------- Code Style (10 points) ----------------------------
 =====================================================================
